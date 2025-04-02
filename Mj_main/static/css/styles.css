@@ -1,0 +1,61 @@
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -200px; /* Initially hidden */
+    width: 200px;
+    height: 100vh;
+    background-color: #343a40; /* Dark background */
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease-in-out; /* Smooth sliding effect */
+}
+
+
+/* Small visible strip for hover activation */
+#sidebar::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -30px; /* Adjusted for larger size */
+    width: 30px; /* Increased size */
+    height: 30px; /* Increased size */
+    background: url('/static/images/next.png');
+    background-size: contain;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show sidebar when hovered */
+#sidebar:hover {
+    left: 0;
+}
+
+#sidebar:hover::after {
+    opacity: 0;
+}
+
+/* Sidebar links */
+#sidebar .nav-link {
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+#sidebar .nav-link:hover {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+/* Main Content - Prevent Overlap */
+.content {
+    margin-left: 50px; /* Enough space for sidebar when closed */
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Shift content when sidebar is active */
+#sidebar:hover ~ .content {
+    margin-left: 220px; /* Adjust based on sidebar width */
+}
